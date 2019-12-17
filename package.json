@@ -1,0 +1,21 @@
+{
+  "name": "cinema-ticket-booking-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-plugin-jest": "^23.1.1",
+    "jest": "^24.9.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
