@@ -45,4 +45,20 @@ describe("Testing for a booking made on a separate in-memory server", () => {
       expect(response.body.length).toBe(1);
     });
   });
+
+  describe("[POST] create a new booking", () => {
+    it("Should create a new booking", async () => {
+      const newBooking = {
+        customerName: "Jim",
+        customerEmail: "Jim@gmail.com"
+      };
+      const { body: booking } = await request(app)
+        .post("/bookings/new")
+        .send(newBooking)
+        .expect(201);
+
+      expect(booking.customerName).toBe("Jim");
+      expect(booking.customerEmail).toBe("Jim@gmail.com");
+    });
+  });
 });

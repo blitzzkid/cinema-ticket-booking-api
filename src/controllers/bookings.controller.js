@@ -9,4 +9,15 @@ const getBookings = async (req, res, next) => {
   }
 };
 
-module.exports = { getBookings };
+const newBooking = async (req, res, next) => {
+  try {
+    const booking = new BookingModel(req.body);
+    await BookingModel.init();
+    const newBooking = await booking.save();
+    res.status(201).send(newBooking);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { getBookings, newBooking };
