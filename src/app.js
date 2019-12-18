@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bookingRouter = require("./routes/bookings.routes");
+const seatRouter = require("./routes/seats.routes");
 const cors = require("cors");
 
 const corsOptions = {
@@ -22,5 +23,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/bookings", bookingRouter);
+app.use("/seats", seatRouter);
 
 module.exports = app;
