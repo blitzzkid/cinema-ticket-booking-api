@@ -3,7 +3,7 @@ const request = require("supertest");
 const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const Booking = require("../models/Booking.model");
-const { mockBookings } = require("./mockData");
+const { mockBookings } = require("./mockData/mockData");
 
 describe("Testing for a booking made on a separate in-memory server", () => {
   let mongoServer;
@@ -47,7 +47,7 @@ describe("Testing for a booking made on a separate in-memory server", () => {
   });
 
   describe("[POST] create a new booking", () => {
-    it("Should create a new booking", async () => {
+    it("Should create a new booking with all required fields", async () => {
       const newBooking = {
         customerName: "Jim",
         customerEmail: "Jim@gmail.com"
@@ -59,6 +59,17 @@ describe("Testing for a booking made on a separate in-memory server", () => {
 
       expect(booking.customerName).toBe("Jim");
       expect(booking.customerEmail).toBe("Jim@gmail.com");
+    });
+
+    it("Should not be able to create a new booking if required field is missing", async () => {
+      const newBooking = {
+        customerName: "Jim"
+      };
+      const response = await request(app)
+        .post("/bookings/new")
+        .send(newBooking);
+
+      expect(response.status).toBe(400);
     });
   });
 });

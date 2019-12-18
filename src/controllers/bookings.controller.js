@@ -16,6 +16,9 @@ const newBooking = async (req, res, next) => {
     const newBooking = await booking.save();
     res.status(201).send(newBooking);
   } catch (err) {
+    if (err.name === "ValidationError") {
+      err.status = 400;
+    }
     next(err);
   }
 };

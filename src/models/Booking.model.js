@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema({
-  customerName: { type: String },
-  customerEmail: { type: String }
+  customerName: { type: String, required: true },
+  customerEmail: { type: String, required: true }
 });
 
 const BookingModel = mongoose.model("booking", bookingSchema);
