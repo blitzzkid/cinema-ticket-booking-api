@@ -23,4 +23,21 @@ const newSeat = async (req, res, next) => {
   }
 };
 
-module.exports = { getSeats, newSeat };
+const updateSeat = async (req, res, next) => {
+  const seatId = req.params.seatId;
+  const newStatus = req.body.status;
+  try {
+    await SeatModel.updateOne(
+      { _id: seatId },
+      { status: newStatus },
+      { safe: true, multi: true, new: true }
+    );
+    const updatedSeat = await SeatModel.findOne({ _id: seatId });
+    res.send(updatedSeat);
+  } catch (error) {
+    error.status = 404;
+    next(error);
+  }
+};
+
+module.exports = { getSeats, newSeat, updateSeat };

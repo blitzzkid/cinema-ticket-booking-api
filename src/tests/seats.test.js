@@ -74,4 +74,31 @@ describe("Testing for seat changes on a separate in-memory server", () => {
       expect(response.status).toBe(400);
     });
   });
+
+  describe("[PATCH] update the status of a seat", () => {
+    it("Should change the status of an existing seat", async () => {
+      const updatedSeat = {
+        status: "reserved"
+      };
+      const { body: seat } = await request(app)
+        .patch("/seats/5df9c4815489a584649552a3")
+        .send(updatedSeat)
+        .expect(200);
+
+      expect(seat.seatNumber).toBe("A1");
+      expect(seat.status).toBe("reserved");
+      expect(seat.capacity).toBe(1);
+    });
+
+    it("Should not be able to change the status of a seat that is not found", async () => {
+      const updatedSeatStatus = {
+        status: "sold"
+      };
+      const response = await request(app)
+        .patch("/seats/5df9c4815489a5846495")
+        .send(updatedSeatStatus);
+
+      expect(response.status).toBe(404);
+    });
+  });
 });
