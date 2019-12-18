@@ -45,4 +45,33 @@ describe("Testing for seat changes on a separate in-memory server", () => {
       expect(response.body.length).toBe(3);
     });
   });
-})
+
+  describe("[POST] create a new seat", () => {
+    it("Should create a new seat with all required fields", async () => {
+      const newSeat = {
+        seatNumber: "A1",
+        status: "available",
+        capacity: 1
+      };
+      const { body: seat } = await request(app)
+        .post("/seats/new")
+        .send(newSeat)
+        .expect(201);
+
+      expect(seat.seatNumber).toBe("A1");
+      expect(seat.status).toBe("available");
+      expect(seat.capacity).toBe(1);
+    });
+
+    it("Should not be able to create a new seat if required field is missing", async () => {
+      const newSeat = {
+        seatNumber: "A1"
+      };
+      const response = await request(app)
+        .post("/bookings/new")
+        .send(newSeat);
+
+      expect(response.status).toBe(400);
+    });
+  });
+});
