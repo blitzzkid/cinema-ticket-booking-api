@@ -7,6 +7,7 @@ const cors = require("cors");
 const corsOptions = {
   origin: [
     "https://cinema-ticket-booking.netlify.com",
+    "https://cinema-ticket-booking.herokuapp.com/",
     "http://localhost:3000",
     "http://localhost:3005"
   ],
