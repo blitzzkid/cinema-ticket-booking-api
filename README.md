@@ -33,7 +33,7 @@ npm install
 Starting the application:
 
 ```
-npm start
+npm run start:dev
 ```
 
 ## Populating data
