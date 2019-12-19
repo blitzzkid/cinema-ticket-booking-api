@@ -5,6 +5,7 @@ This app has been deployed with circleci for continous integration/continous del
 ## Installing required dependencies
 
 To install the app, you would require the following dependencies:
+
 1. Node.js - If you do not have it please download it from https://nodejs.org/en/
 2. MongoDB - If you do not have it please download it from https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials using the appropriate commands for the OS you are using.
 
@@ -18,12 +19,13 @@ mongod --dbpath ~/data/db"
 
 ## Running the app
 
-Please start your database first before running this application. Also, please start this backend application first before you start the frontend application. After which you can do the following steps:
+Please start your database first before running this application. Also, please start this backend application first and populate it with data before you start the frontend application. After which you can do the following steps:
 
 1. Unzip the code to a folder on your computer
 2. Go to the project's folder in your command line and run the following 2 commands:
 
 Install dependencies:
+
 ```
 npm install
 ```
@@ -32,6 +34,18 @@ Starting the application:
 
 ```
 npm start
+```
+
+## Populating data
+
+Populate your database with data for seats by making a post request to `http://localhost:3005/seats/new` with the following json in the body. You can do this through apps such as `Insomnia` or `Postman`
+
+```json
+{
+  "seatNumber": "A1",
+  "status": "available",
+  "capacity": 1
+}
 ```
 
 ## Running the unit and integration tests
