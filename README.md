@@ -1,6 +1,10 @@
 ## About the app
 
-This app has been deployed with circleci for continous integration/continous delivery
+This app has been deployed with circleci for continous integration/continous delivery.
+
+## Link to frontend repository
+
+The frontend repository can be found at https://github.com/mtan014/cinema-ticket-booking 
 
 ## Installing required dependencies
 
@@ -38,7 +42,7 @@ npm run start:dev
 
 ## Populating data
 
-Populate your database with data for seats by making a post request to `http://localhost:3005/seats/new` with the following json in the body. You can do this through apps such as `Insomnia` or `Postman`
+Populate your database with data for seats by making a post request to `http://localhost:3005/seats/new` with the following json in the body. You can do this through apps such as `Insomnia` or `Postman`. You can also populate the database by running the Cypress end to end tests from the frontend project after the database and backend application is started.
 
 ```json
 {
